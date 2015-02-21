@@ -85,23 +85,20 @@ if __name__ == "__main__":
     # plot dense and sparse outputs, emulating Fowler et al.'s Fig. 1.
     dense_output_array=np.asarray(aSolOut.dense_output)
     sparse_output_array=np.asarray(aSolOut.sparse_output)
-    plt.subplot(2, 1, 1, aspect=3.6/2.0, xlim=[-1.8,1.8], ylim=[-0.9,1.10])
-    plt.plot(sparse_output_array[:,2],
-             sparse_output_array[:,1],'+')
-    plt.plot(sparse_output_array[:,2],
-             sparse_output_array[:,1])
-    plt.ylabel("real(X)")
-    plt.xticks(np.arange(-1,2, 1.0))
-    plt.minorticks_on()
+    for plotnum, second_dataset in ((1,sparse_output_array),
+                                    (2,dense_output_array)):
+        plt.subplot(2, 1, plotnum, aspect=3.6/2.1, 
+                    xlim=[-1.8,1.8], ylim=[-0.9,1.20])
+        plt.plot(sparse_output_array[:,2], sparse_output_array[:,1],'+')
+        plt.plot(second_dataset[:,2], second_dataset[:,1])
+        plt.ylabel("real(X)")
+        plt.xticks(np.arange(-1,2, 1.0))
+        plt.minorticks_on()
+        for point in (0,-1):
+            plt.text(sparse_output_array[point,2],
+                     sparse_output_array[point,1],
+                     ('t=%.2f' % sparse_output_array[point,0]),fontsize=8,
+                     verticalalignment='bottom', horizontalalignment='center')
 
-    plt.subplot(2, 1, 2, aspect=3.6/2.0, xlim=[-1.8,1.8], ylim=[-0.9,1.10])
-    plt.plot(sparse_output_array[:,2],
-             sparse_output_array[:,1],'+')
-    plt.plot(dense_output_array[:,2],
-             dense_output_array[:,1])
-    plt.ylabel("real(X)")
-    plt.xlabel("real(Y)")
-    plt.xticks(np.arange(-1,2, 1.0))
-    plt.minorticks_on()
     plt.savefig('reproduction_of_figure_1_of_fowler_et_al.png')
     plt.show()

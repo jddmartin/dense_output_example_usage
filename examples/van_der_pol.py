@@ -4,12 +4,15 @@ dense output option of the DOP853 integrator.
 An introductory discussion is given on pages 111 of Hairer et al.'s
 "Solving Ordinary Differential Equations, Nonstiff Problems", 
 Second Revised Edition, Springer, 1993.
-but epsilon has a different definition here 
-(the reciprocal of the book's usage).
+but epsilon has a different definition here (reciprocal of the book's usage).
 
 This code is modelled after 
-"Driver for dopri5 on Van der Pol's equation"
+"Driver for DOP853 on Van der Pol's equation"
 available at: http://www.unige.ch/~hairer/prog/nonstiff/dr_dop853.f
+(note that Hairer's source code comments accidentally mislabels this 
+file as a driver for DOPRI5, rather than DOP853).
+
+Since being incorporated into scipy, the DOP853 code has been updated by Hairer to have an `iout=3` dense option, which eliminates wasteful calculation of interpolation polynomials in regimes where dense output is not required.  So although the following code reproduces the output of "dr_dop853.py" it does so with more function evaluations (compare the last line of output with fortran code that uses `iout=3`).
 """
 
 from __future__ import division, print_function, absolute_import

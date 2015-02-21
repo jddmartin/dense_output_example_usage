@@ -1,3 +1,3 @@
 all:
 	pdflatex complex_lorenz_equations
-	convert -density 150x150 complex_lorenz_equations.pdf complex_lorenz_equations.png
+	 convert -density 300 complex_lorenz_equations.pdf -resize 40% complex_lorenz_equations.png
