@@ -12,6 +12,8 @@ This code is modelled after
 available at: http://www.unige.ch/~hairer/prog/nonstiff/dr_dop853.f
 """
 
+from __future__ import division, print_function, absolute_import
+
 import math, numpy
 from scipy.integrate import ode, complex_ode, dense_dop
 
@@ -42,12 +44,12 @@ def solout(nr, xold, x, y, con_view, icomp):
                 # i.e. make solout a member function, and xout a class attribute.
     format_string=" X = {0:5.2f}   Y ={1:18.10e}{2:18.10e}    NSTEP = {3:4d}"
     if nr == 1:
-        print format_string.format(x, y[0], y[1], nr-1)
+        print(format_string.format(x, y[0], y[1], nr-1))
         xout = 0.1
     else:
         while x >= xout:
             dense=dense_dop(xout, xold, x, con_view)
-            print format_string.format(xout, dense[0], dense[1], nr-1)
+            print(format_string.format(xout, dense[0], dense[1], nr-1))
             xout += 0.1
 
 ig = ode(f_van_der_pol).set_integrator('dop853', atol=atol, rtol=rtol, 
@@ -58,8 +60,9 @@ ig.set_solout(solout, dense_components=(0,1,))
 ig.set_initial_value(y0, x0).set_f_params(rpar)
 ret = ig.integrate(xend)
 
-print " X = XEND    Y ={0:18.10e}{1:18.10e}".format(ret[0], ret[1],)
+print(" X = XEND    Y ={0:18.10e}{1:18.10e}".format(ret[0], ret[1],))
 
 iw=ig._integrator.returned_iwork
-print "        tol={0:5.2e} \n fcn= {1:d} step= {2:d} accpt= {3:d} rejct= {4:d}".format(atol,*iw[16:20])
+print("        tol={0:5.2e} \n fcn= {1:d} step= {2:d} "
+      "accpt= {3:d} rejct= {4:d}".format(atol,*iw[16:20]))
 

@@ -10,6 +10,8 @@ this book, available at: http://www.unige.ch/~hairer/prog/nonstiff/dr_dopri5.f
 The fortran code output format is mimicked.
 """
 
+from __future__ import division, print_function, absolute_import
+
 import math, numpy
 from scipy.integrate import ode, complex_ode, dense_dop
 
@@ -47,23 +49,26 @@ def solout(nr, xold, x, y, con_view, icomp):
     # i.e. make solout a member function, and xout a class attribute.
     format_string=" X = {0:5.2f}   Y ={1:18.10e} {2:18.10e}    NSTEP = {3:4d}"
     if nr == 1:
-        print format_string.format(x, y[0], y[1], nr-1)
+        print(format_string.format(x, y[0], y[1], nr-1))
         xout += 2.0
     else:
         while x >= xout:
             dense=dense_dop(xout, xold, x, con_view)
-            print format_string.format(xout, dense[0], dense[1], nr-1)
+            print(format_string.format(xout, dense[0], dense[1], nr-1))
             xout += 2.0
 
 ig = ode(f_arenstorf).set_integrator('dopri5', atol=atol, rtol=rtol)
 
-# although there are 4 components: 2 positions and 2 velocities, we
-# only request dense output for the 2 positions:
+# Now use the new dense output option by specification of "dense_components"
+# in call of ".set_solout" method.
+# Although there are 4 components: 2 positions and 2 velocities, we
+# only request dense output for the 2 positions.
 ig.set_solout(solout, dense_components=(0,1,))
 
 ig.set_initial_value(y0, x0).set_f_params(rpar)
 ret = ig.integrate(xend)
-print " X = XEND    Y ={0:18.10e} {1:18.10e}".format(ret[0], ret[1],)
 
+print(" X = XEND    Y ={0:18.10e} {1:18.10e}".format(ret[0], ret[1],))
 iw=ig._integrator.returned_iwork
-print "     tol={0:5.2e}   fcn= {1:d} step= {2:d} accpt= {3:d} rejct= {4:d}".format(atol,*iw[16:20])
+print("     tol={0:5.2e}   fcn= {1:d} step= {2:d} "
+      "accpt= {3:d} rejct= {4:d}".format(atol,*iw[16:20]))
