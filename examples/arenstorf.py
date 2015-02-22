@@ -61,8 +61,8 @@ ig = ode(f_arenstorf).set_integrator('dopri5', atol=atol, rtol=rtol)
 
 # Now use the new dense output option by specification of "dense_components"
 # in call of ".set_solout" method.
-# Although there are 4 components: 2 positions and 2 velocities, we
-# only request dense output for the 2 positions.
+# Although there are 4 components (2 positions and 2 velocities) we
+# only request dense output for the 2 positions:
 ig.set_solout(solout, dense_components=(0,1,))
 
 ig.set_initial_value(y0, x0).set_f_params(rpar)

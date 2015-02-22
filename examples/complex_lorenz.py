@@ -91,7 +91,7 @@ if __name__ == "__main__":
                     xlim=[-1.8,1.8], ylim=[-0.9,1.20])
         plt.plot(sparse_output_array[:,2], sparse_output_array[:,1],'+')
         plt.plot(second_dataset[:,2], second_dataset[:,1])
-        plt.ylabel("real(X)")
+        plt.ylabel("real(X)") # unconventional X and Y ordering in paper!
         plt.xticks(np.arange(-1,2, 1.0))
         plt.minorticks_on()
         for point in (0,-1):
@@ -99,6 +99,7 @@ if __name__ == "__main__":
                      sparse_output_array[point,1],
                      ('t=%.2f' % sparse_output_array[point,0]),fontsize=8,
                      verticalalignment='bottom', horizontalalignment='center')
+    plt.xlabel("real(Y)")
 
     plt.savefig('reproduction_of_figure_1_of_fowler_et_al.png')
     plt.show()

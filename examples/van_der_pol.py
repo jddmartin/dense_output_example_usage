@@ -58,6 +58,8 @@ def solout(nr, xold, x, y, con_view, icomp):
 ig = ode(f_van_der_pol).set_integrator('dop853', atol=atol, rtol=rtol, 
                                        nsteps=10000)
 
+# Now use the new dense output option by specification of "dense_components"
+# in call of ".set_solout" method:
 ig.set_solout(solout, dense_components=(0,1,))
 
 ig.set_initial_value(y0, x0).set_f_params(rpar)
