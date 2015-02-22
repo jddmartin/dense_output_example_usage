@@ -6,8 +6,6 @@ An introductory discussion is given on pages 129-131 of Hairer et al.'s
 Second Revised Edition, Springer, 1993.
 This code is modelled after "Driver for the code DORPI5" in the Appendix of
 this book, available at: http://www.unige.ch/~hairer/prog/nonstiff/dr_dopri5.f
-
-The fortran code output format is mimicked.
 """
 
 from __future__ import division, print_function, absolute_import
@@ -46,7 +44,9 @@ xout = 0.0 # used to keep track of current time in "solout".
 
 def solout(nr, xold, x, y, con_view, icomp):
     global xout # You can avoid use of "global" by using classes (recommended).
-    # i.e. make solout a member function, and xout a class attribute.
+                # i.e. make solout a member function, and xout a class attribute.
+                # (see "complex_lorenz.py" as an example).
+    # mimic Fortran output format:
     format_string=" X = {0:5.2f}   Y ={1:18.10e} {2:18.10e}    NSTEP = {3:4d}"
     if nr == 1:
         print(format_string.format(x, y[0], y[1], nr-1))

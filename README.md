@@ -15,7 +15,7 @@ http://dx.doi.org/10.1016/0167-2789(82)90057-4
 
 ![Alt text](complex_lorenz_latex/complex_lorenz_equations.png "Optional title")
 
-For certain conditions this system will tend towards a stable elliptical limit cycle in the real(X), real(Y) plane.  The specific trajectory shown below replicates Fig. 1 of Fowler *et al.*  (see the code [`complex_lorenz.py`](examples/complex_lorenz.py) for the parameters and initial conditions). The top plot illustrates the normal output integration steps of DOP853 for the requested accuracy.  Connecting these steps by straight lines results in a "jagged", unappealing plot.  
+Under certain conditions this system will tend towards a stable elliptical limit cycle in the real(X), real(Y) plane.  The specific trajectory shown below replicates Fig. 1 of Fowler *et al.*  (see the code [`complex_lorenz.py`](examples/complex_lorenz.py) for the parameters and initial conditions). The top plot illustrates the normal output integration steps of DOP853 for the requested accuracy.  Connecting these steps by straight lines results in a "jagged", unappealing plot.  
 
 The bottom figure shows the use of the new dense output capabilities. After each step, the evaluation of an interpolating polynomial (with coefficients supplied by DOP853) between the last and current step allows a smooth and more visually pleasing plot to be drawn.
 

@@ -12,7 +12,12 @@ available at: http://www.unige.ch/~hairer/prog/nonstiff/dr_dop853.f
 (note that Hairer's source code comments accidentally mislabels this 
 file as a driver for DOPRI5, rather than DOP853).
 
-Since being incorporated into scipy, the DOP853 code has been updated by Hairer to have an `iout=3` dense option, which eliminates wasteful calculation of interpolation polynomials in regimes where dense output is not required.  So although the following code reproduces the output of "dr_dop853.py" it does so with more function evaluations (compare the last line of output with fortran code that uses `iout=3`).
+Since being incorporated into scipy, the DOP853 code has been updated by Hairer 
+to have an "iout=3" dense option, which eliminates wasteful calculation of 
+interpolation polynomials in regimes where dense output is not required.  
+So although the following code reproduces the output of "dr_dop853.py", it 
+does so with more function evaluations (compare the last line of output with 
+fortran code that uses "iout=3").
 """
 
 from __future__ import division, print_function, absolute_import
@@ -45,6 +50,8 @@ xout = 0.0 # used to keep track of current time in "solout".
 def solout(nr, xold, x, y, con_view, icomp):
     global xout # You can avoid use of "global" by using classes (recommended).
                 # i.e. make solout a member function, and xout a class attribute.
+                # (see "complex_lorenz.py" as an example).
+    # mimic Fortran output format:
     format_string=" X = {0:5.2f}   Y ={1:18.10e}{2:18.10e}    NSTEP = {3:4d}"
     if nr == 1:
         print(format_string.format(x, y[0], y[1], nr-1))
