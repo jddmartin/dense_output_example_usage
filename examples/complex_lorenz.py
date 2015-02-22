@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # initial conditions, and length of time to integrate:
     t0=0.0
-    y0=[1.0, 0.0, 0.0]
+    v0=[1.0, 0.0, 0.0]
     tend=10.0
 
     # desired tolerances:
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     ig = complex_ode(system.f).set_integrator('dop853', atol=atol, rtol=rtol, 
                                               nsteps=1000000)
     ig.set_solout(aSolOut.solout, dense_components=(0,1,2))
-    ig.set_initial_value(y0, t0)
+    ig.set_initial_value(v0, t0)
 
     # solve system:
     ret = ig.integrate(tend)
