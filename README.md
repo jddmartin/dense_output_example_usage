@@ -13,7 +13,7 @@ The first two examples simply reproduce output similar to the example Fortran dr
 The scipy wrappers for DOPRI5 and DOP853 allow differential equations to be solved that involve complex number components and derivatives (but only in *real* time).  The [`complex_lorenz.py`](examples/complex_lorenz.py) example illustrates that the dense output extension can be used for a system of this type: the so-called "Complex Lorenz" system as studied by Fowler *et al.* 
 http://dx.doi.org/10.1016/0167-2789(82)90057-4
 
-![Alt text](complex_lorenz_latex/complex_lorenz_equations.png "Optional title")
+![Alt text](latex/complex_lorenz_equations.png "Optional title")
 
 Under certain conditions this system will tend towards a stable elliptical limit cycle in the real(X), real(Y) plane.  The specific trajectory shown below replicates Fig. 1 of Fowler *et al.*  (see the code [`complex_lorenz.py`](examples/complex_lorenz.py) for the parameters and initial conditions). The top plot illustrates the normal output integration steps of DOP853 for the requested accuracy.  Connecting these steps by straight lines results in a "jagged", unappealing plot.  
 
