@@ -8,9 +8,9 @@ The examples are:
 2. [`van_der_pol.py`](examples/van_der_pol.py)
 3. [`complex_lorenz.py`](examples/complex_lorenz.py)
 
-The first two examples simply reproduce output similar to the example Fortran driver code given by Hairer (see docstrings for links).  Here I will briefly discuss the third example:  [`complex_lorenz.py`](examples/complex_lorenz.py), which is a bit more "pythonic".
+The first two examples simply reproduce output similar to the example Fortran driver code given by Hairer (see docstrings for links).  Here I will briefly discuss the third example:  [`complex_lorenz.py`](examples/complex_lorenz.py), which is written in a more "pythonic" form than the other two.
 
-The scipy wrappers for DOPRI5 and DOP853 allow differential equations to be solved that involve complex number components and derivatives (but only in *real* time).  The [`complex_lorenz.py`](examples/complex_lorenz.py) example was chosen to show that the dense output extension can also be used for one of these systems: the so-called "Complex Lorenz" system as studied by Fowler *et al.* 
+The scipy wrappers for DOPRI5 and DOP853 allow differential equations to be solved that involve complex number components and derivatives (but only in *real* time).  The [`complex_lorenz.py`](examples/complex_lorenz.py) example illustrates that the dense output extension can be used for a system of this type: the so-called "Complex Lorenz" system as studied by Fowler *et al.* 
 http://dx.doi.org/10.1016/0167-2789(82)90057-4
 
 ![Alt text](complex_lorenz_latex/complex_lorenz_equations.png "Optional title")
