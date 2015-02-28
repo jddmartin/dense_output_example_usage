@@ -26,7 +26,7 @@ class ComplexLorenz(object):
         self.a = 1.0-1.0j*e
 
     def f(self, t, v):
-        """Complex Lorenz system odes, Eq. 1.1 of Fowler et al. (see above).
+        """Complex Lorenz system ODEs, Eq. 1.1 of Fowler et al. (see above).
         """
         (x, y, z) = v
         return [-self.sigma*x+self.sigma*y,
@@ -47,7 +47,7 @@ class SolOut(object):
 
     def solout(self, nr, told, t, v, con_view, icomp):
         x, y, z = v
-        if nr == 1:  # at initial starting point:
+        if nr == 1:  # initial conditions:
             self.sparse_output.append((t, x.real, y.real, z.real,))
             self.dense_output.append((t, x.real, y.real, z.real,))
             self.tdense = t+self.tinc
@@ -64,9 +64,8 @@ class SolOut(object):
 
 
 if __name__ == "__main__":
-    # Figure 1 and 2:
+    # parameters for Fig.'s 1 and 2 of Fowler et al.:
     system = ComplexLorenz(4.0/3.0, 2.0, 2.0, 1.0, 3.0)
-    aSolOut = SolOut(tinc=0.01)
 
     # initial conditions, and length of time to integrate:
     t0 = 0.0
@@ -80,6 +79,7 @@ if __name__ == "__main__":
 
     ig = complex_ode(system.f).set_integrator('dop853', atol=atol, rtol=rtol,
                                               nsteps=1000000)
+    aSolOut = SolOut(tinc=0.01)
     ig.set_solout(aSolOut.solout, dense_components=(0, 1, 2))
     ig.set_initial_value(v0, t0)
 
