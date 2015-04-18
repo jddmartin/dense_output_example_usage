@@ -1,6 +1,6 @@
 ### Examples of obtaining dense output from the DOPRI5 and DOP853 ordinary differential equation solvers using proposed scipy modifications
 
-To run these examples, scipy must have the proposed dense output capabilities from: https://github.com/jddmartin/scipy
+To run these examples, scipy must have the proposed dense output capabilities from: https://github.com/jddmartin/scipy/tree/dense_output_from_dopri5_and_dop853
 
 The examples are:
 
