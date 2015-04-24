@@ -45,7 +45,7 @@ class SolOut(object):
         self.dense_output = []
         self.tinc = tinc
 
-    def solout(self, nr, told, t, v, con_view, icomp):
+    def solout(self, nr, told, t, v, con):
         x, y, z = v
         if nr == 1:  # initial conditions:
             self.sparse_output.append((t, x.real, y.real, z.real,))
@@ -57,7 +57,7 @@ class SolOut(object):
                     return
             self.sparse_output.append((t, x.real, y.real, z.real,))
             while t > self.tdense:
-                xd, yd, zd = dense_dop(self.tdense, told, t, con_view)
+                xd, yd, zd = dense_dop(self.tdense, told, t, con)
                 self.dense_output.append((self.tdense,
                                           xd.real, yd.real, zd.real))
                 self.tdense += self.tinc

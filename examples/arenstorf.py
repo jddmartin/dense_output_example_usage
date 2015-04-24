@@ -15,7 +15,7 @@ import numpy
 from scipy.integrate import ode, complex_ode, dense_dop
 
 
-def solout(nr, xold, x, y, con_view, icomp):
+def solout(nr, xold, x, y, con):
     global xout
     # Note that the use of "global" can be avoided using classes
     # (recommended). i.e. make solout a member function, and xout a class
@@ -29,7 +29,7 @@ def solout(nr, xold, x, y, con_view, icomp):
         xout += 2.0
     else:
         while x >= xout:
-            dense = dense_dop(xout, xold, x, con_view)
+            dense = dense_dop(xout, xold, x, con)
             print(format_string.format(xout, dense[0], dense[1], nr-1))
             xout += 2.0
 
